@@ -1,10 +1,10 @@
-import type { SiteConfig } from "@/types";
 import type { AstroExpressiveCodeOptions } from "astro-expressive-code";
+import type { SiteConfig } from "@/types";
 
 export const siteConfig: SiteConfig = {
-	author: "Your Name",
+	author: "Max O'Keeffe",
 	date: {
-		locale: "en-US",
+		locale: "en-gb",
 		options: {
 			day: "numeric",
 			month: "short",
@@ -12,21 +12,21 @@ export const siteConfig: SiteConfig = {
 		},
 	},
 	description:
-		"A minimal personal blog & writing space, built with Astro. Notes on whatever I happen to be thinking about — usually some mix of code, design, and the occasional half-formed idea. Replace this paragraph in src/site.config.ts to make the site your own.",
-	lang: "en-US",
-	ogLocale: "en_US",
+		"I am a graudating maths PhD student at King's College London. My research interests lie in harmonic analysis, pointwise ergodic theory, and additive combinatorics.\n\nOver the last few years I have become interested in using programming to problem solve and have taught myself Python and C++. I am continuing to learn new skills and languages such as Rust.\n\nHere you can find a list of my publications, projects I've worked on, and some posts about my work. Feel free to get in touch!",
+	lang: "en-gb",
+	ogLocale: "en_gb",
 	sortPostsByUpdatedDate: false,
-	title: "Astro Sienna",
+	title: "Max O'Keeffe",
 	hideThemeCredit: false,
 	profile: {
-		name: "John Doe",
-		email: "john@example.com",
-		github: "https://github.com/example",
-		linkedin: "https://www.linkedin.com/in/example/",
+		name: "Max O'Keeffe",
+		email: "maximilian.okeeffe@kcl.ac.uk",
+		github: "https://github.com/max-okeeffe",
+		linkedin: "https://www.linkedin.com/in/max-okeeffe/",
 		jobTitle: "Software Engineer",
-		employer: "Example Inc.",
-		employerUrl: "https://example.com",
-		alumni: "Example University",
+		employer: "King's College London",
+		employerUrl: "https://www.kcl.ac.uk/people/maximilian-okeeffe",
+		alumni: "University of Warwick",
 		avatar: "/avatar.png",
 	},
 	// Uncomment & fill in to enable Giscus comments on every post.
@@ -49,16 +49,20 @@ export const menuLinks: { path: string; title: string }[] = [
 		title: "Home",
 	},
 	{
-		path: "/posts/",
-		title: "Posts",
-	},
-	{
-		path: "/showcase/",
-		title: "Showcase",
-	},
-	{
 		path: "/about/",
 		title: "About",
+	},
+	{
+		path: "/publications/",
+		title: "Publications",
+	},
+	{
+		path: "/projects/",
+		title: "Projects",
+	},
+	{
+		path: "/posts/",
+		title: "Posts",
 	},
 ];
 
