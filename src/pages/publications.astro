@@ -1,0 +1,223 @@
+---
+import { Schema } from "astro-seo-schema";
+import { publications } from "@/data/publications";
+import PageLayout from "@/layouts/Base.astro";
+import { formatRailDate, formatStampDate } from "@/utils/date";
+import { absoluteUrl } from "@/utils/path";
+
+const sorted = [...publications].sort((a, b) => b.date.getTime() - a.date.getTime());
+const _featured = sorted[0];
+const _rest = sorted.slice(1);
+
+const _siteUrl = (path: string) => absoluteUrl(path, Astro.site);
+---
+
+<Schema
+	item={{
+		"@context": "https://schema.org",
+		"@type": "BreadcrumbList",
+		itemListElement: [
+			{
+				"@type": "ListItem",
+				position: 1,
+				name: "Home",
+				item: _siteUrl("/"),
+			},
+			{
+				"@type": "ListItem",
+				position: 2,
+				name: "Publications",
+				item: _siteUrl("/publications"),
+			},
+		],
+	}}
+/>
+
+<PageLayout meta={{ title: "Publications" }}>
+	<section class="publications" aria-labelledby="publications-label">
+		<div class="section-label" id="publications-label">Publications</div>
+		{
+			publications.length === 0 ? (
+				<p class="empty">No publications yet.</p>
+			) : (
+				<div class="timeline">
+					{_featured && (
+						<a
+							class="post featured"
+							href={_featured.href}
+							rel="noreferrer"
+							target="_blank"
+							style="--i: 0"
+						>
+							<div class="post-rail">
+								<time class="post-date" datetime={_featured.date.toISOString()}>
+									{formatRailDate(_featured.date)}
+								</time>
+								<span class="post-dot" aria-hidden="true" />
+							</div>
+							<div class="post-body">
+								<div class="post-stamp">Latest{_featured.venue ? ` · ${_featured.venue}` : ""}</div>
+								<h2 class="post-title">{_featured.title}</h2>
+								<p class="post-excerpt">{_featured.description}</p>
+								{!!_featured.tags?.length && (
+									<div class="post-meta">
+										{_featured.tags.map((t: string, i: number) => (
+											<Fragment>
+												{i > 0 && <span class="dot">·</span>}
+												<span>{t}</span>
+											</Fragment>
+										))}
+									</div>
+								)}
+							</div>
+						</a>
+					)}
+
+					{_rest.map((pub, idx) => (
+						<a
+							class="post"
+							href={pub.href}
+							rel="noreferrer"
+							target="_blank"
+							style={`--i: ${idx + 1}`}
+						>
+							<div class="post-rail">
+								<time class="post-date" datetime={pub.date.toISOString()}>
+									{formatRailDate(pub.date)}
+								</time>
+								<span class="post-dot" aria-hidden="true" />
+							</div>
+							<div class="post-body">
+								<h3 class="post-title">{pub.title}</h3>
+								<p class="post-preview">
+									{pub.venue ? `${pub.venue} · ${pub.description}` : pub.description}
+								</p>
+								{!!pub.tags?.length && (
+									<div class="post-meta">
+										{pub.tags.map((t: string, i: number) => (
+											<Fragment>
+												{i > 0 && <span class="dot">·</span>}
+												<span>{t}</span>
+											</Fragment>
+										))}
+									</div>
+								)}
+							</div>
+						</a>
+					))}
+				</div>
+			)
+		}
+	</section>
+</PageLayout>
+
+<style>
+	.publications {
+		margin-bottom: 88px;
+	}
+	.empty {
+		font-family: var(--font-serif);
+		font-size: 17px;
+		color: hsl(var(--theme-text-muted));
+	}
+
+	/* Featured publication */
+	.post.featured .post-body {
+		padding-bottom: 56px;
+	}
+	.post.featured .post-stamp {
+		font-family: var(--font-mono);
+		font-size: 11px;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+		color: hsl(var(--theme-accent));
+		margin-bottom: 12px;
+	}
+	.post.featured .post-title {
+		font-size: 30px;
+		line-height: 1.14;
+		margin-bottom: 14px;
+		letter-spacing: -0.02em;
+	}
+	.post.featured .post-excerpt {
+		font-size: 18px;
+		line-height: 1.62;
+		color: hsl(var(--theme-text-muted));
+		margin: 0 0 16px;
+		max-width: 58ch;
+		word-wrap: break-word;
+		overflow-wrap: anywhere;
+	}
+	.post.featured .post-meta {
+		font-family: var(--font-mono);
+		font-size: 11.5px;
+		color: hsl(var(--theme-text) / 0.72);
+		font-variant-numeric: tabular-nums;
+		font-feature-settings: "tnum";
+	}
+	.post.featured .post-meta .dot {
+		color: var(--faint);
+		margin: 0 8px;
+	}
+	.post.featured .post-dot {
+		--rail-dot-size: 11px;
+		border-color: hsl(var(--theme-text-muted));
+	}
+	.post.featured:hover .post-dot {
+		background: hsl(var(--theme-accent));
+		border-color: hsl(var(--theme-accent));
+	}
+	.post-preview {
+		overflow: visible;
+		display: block;
+		-webkit-line-clamp: unset;
+	}
+	.post .post-meta {
+		font-family: var(--font-mono);
+		font-size: 11.5px;
+		color: hsl(var(--theme-text) / 0.72);
+		font-variant-numeric: tabular-nums;
+		font-feature-settings: "tnum";
+	}
+	.post .post-meta .dot {
+		color: var(--faint);
+		margin: 0 8px;
+	}
+
+	@media (max-width: 720px) {
+		.post.featured .post-rail {
+			display: none;
+		}
+		.post.featured .post-body {
+			padding-bottom: 24px;
+			border-bottom: 1px solid var(--hairline);
+			margin-bottom: 4px;
+		}
+		.post.featured .post-title {
+			font-size: 22px;
+			line-height: 1.2;
+			letter-spacing: -0.015em;
+			margin-bottom: 10px;
+		}
+		.post.featured .post-excerpt {
+			font-size: 15.5px;
+			line-height: 1.55;
+			margin: 0 0 10px;
+		}
+		.post.featured .post-meta {
+			font-size: 11px;
+		}
+	}
+
+	@media (max-width: 420px) {
+		.publications {
+			margin-bottom: 56px;
+		}
+		.post.featured .post-title {
+			font-size: 17px;
+		}
+		.post.featured .post-excerpt {
+			font-size: 15px;
+		}
+	}
+</style>
