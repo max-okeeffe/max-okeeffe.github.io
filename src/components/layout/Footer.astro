@@ -2,17 +2,22 @@
 import { siteConfig } from "@/site-config";
 import { withBase } from "@/utils/path";
 
-const year = new Date().getFullYear();
+const _year = new Date().getFullYear();
 ---
 
 <footer class="site-footer">
 	<div class="left">
-		<span>&copy; {year} {siteConfig.author}</span>
-		{!siteConfig.hideThemeCredit && (
-			<span class="theme-credit">
-				🚀 Powered by <a href="https://github.com/AnjayGoel/astro-sienna" rel="noopener">Astro Sienna</a>
-			</span>
-		)}
+		<span>&copy; {_year} {siteConfig.author}</span>
+		{
+			!siteConfig.hideThemeCredit && (
+				<span class="theme-credit">
+					🚀 Powered by{" "}
+					<a href="https://github.com/AnjayGoel/astro-sienna" rel="noopener">
+						Astro Sienna
+					</a>
+				</span>
+			)
+		}
 	</div>
 	<div class="right">
 		<a href={withBase("/rss.xml")}>RSS</a>
