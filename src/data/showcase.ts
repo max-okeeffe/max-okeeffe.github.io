@@ -1,13 +1,19 @@
 export interface ShowcaseItem {
 	name: string;
 	href: string;
-	stack: string;
+	stack?: string;
 	badge?: string;
 	desc: string;
 }
 
 export const showcase: ShowcaseItem[] = [
 	{
+		name: "FinMathsLib-Cpp",
+		href: "https://github.com/max-okeeffe/FinMathsLib-Cpp",
+		stack: "C++ · Googletest ",
+		desc: "A modern C++ library for financial mathematics including options pricing, portfolio hedging, numerical methods, and multi-threaded Monte Carlo simulations. The aim is the incorporate idiomatic and safety features of modern C++.",
+	},
+	/*{
 		name: "Sample Project",
 		href: "https://github.com/example/sample",
 		stack: "TypeScript · CLI",
@@ -26,5 +32,5 @@ export const showcase: ShowcaseItem[] = [
 		href: "https://github.com/example/paper",
 		stack: "Python · Algorithms",
 		desc: "Showcase entries don't have to be products — a write-up, a paper repo, a one-off experiment all fit. The list is rendered in order; reorder to taste.",
-	},
+	},*/
 ];
