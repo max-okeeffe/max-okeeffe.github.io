@@ -1,25 +1,22 @@
 import fs from "node:fs";
 import mdx from "@astrojs/mdx";
+import partytown from "@astrojs/partytown";
 import sitemap from "@astrojs/sitemap";
 import tailwind from "@astrojs/tailwind";
+import { defineConfig } from "astro/config";
 import expressiveCode from "astro-expressive-code";
 import icon from "astro-icon";
 import robotsTxt from "astro-robots-txt";
 import webmanifest from "astro-webmanifest";
-import { defineConfig } from "astro/config";
-import { expressiveCodeOptions } from "./src/site.config";
-import { siteConfig } from "./src/site.config";
-import partytown from "@astrojs/partytown";
-
+import rehypeExternalLinks from "rehype-external-links";
+import rehypeKatex from "rehype-katex";
+import rehypeUnwrapImages from "rehype-unwrap-images";
 import remarkDirective from "remark-directive";
 import remarkMath from "remark-math";
 import { rehypeBasePath } from "./src/plugins/rehype-base-path";
 import { remarkAdmonitions } from "./src/plugins/remark-admonitions";
 import { remarkReadingTime } from "./src/plugins/remark-reading-time";
-
-import rehypeExternalLinks from "rehype-external-links";
-import rehypeKatex from "rehype-katex";
-import rehypeUnwrapImages from "rehype-unwrap-images";
+import { expressiveCodeOptions, siteConfig } from "./src/site.config";
 
 // Defaults to root; the deploy workflow sets BASE_PATH for subpath hosts
 // (GitHub Pages project sites). See "Base path" in the README.
@@ -27,7 +24,7 @@ const BASE_PATH = process.env.BASE_PATH || "/";
 const START_URL = BASE_PATH.endsWith("/") ? BASE_PATH : `${BASE_PATH}/`;
 
 export default defineConfig({
-	site: "https://anjaygoel.github.io",
+	site: "https://max-okeeffe.github.io",
 	base: BASE_PATH,
 	image: {
 		domains: ["webmention.io"],
