@@ -1,5 +1,14 @@
 {
 	"$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+	"files": {
+		"includes": [
+			"**",
+			"!src/layouts/BlogPost.astro",
+			"!public/giscus-dark.css",
+			"!public/giscus-light.css",
+			"!src/styles/global.css"
+		]
+	},
 	"formatter": {
 		"indentStyle": "tab",
 		"indentWidth": 2,
