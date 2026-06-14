@@ -1,5 +1,8 @@
 # [max-okeeffe.github.io](https://max-okeeffe.github.io)
 
+[![CI](https://github.com/max-okeeffe/max-okeeffe.github.io/actions/workflows/ci.yml/badge.svg)](https://github.com/max-okeeffe/max-okeeffe.github.io/actions/workflows/ci.yml)
+[![Deploy to GitHub Pages](https://github.com/max-okeeffe/max-okeeffe.github.io/actions/workflows/deploy.yml/badge.svg)](https://github.com/max-okeeffe/max-okeeffe.github.io/actions/workflows/deploy.yml)
+
 This is the source code for my personal website, [max-okeeffe.github.io](https://max-okeeffe.github.io), created using the [Astro Sienna](https://github.com/AnjayGoel/astro-sienna) theme and hosted on GitHub pages.
 
 It contains information about me, lists of publications and projects I have worked on, and some posts about my work.
