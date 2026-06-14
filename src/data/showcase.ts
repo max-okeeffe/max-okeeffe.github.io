@@ -14,6 +14,13 @@ export const showcase: ShowcaseItem[] = [
 		badge: "Ongoing",
 		desc: "A modern C++ library for financial mathematics including options pricing, portfolio hedging, numerical methods, and multi-threaded Monte Carlo simulations. The aim is the incorporate idiomatic and safety features of modern C++.",
 	},
+	{
+		name: "max-okeeffe.github.io",
+		href: "https://github.com/max-okeeffe/max-okeeffe.github.io",
+		stack: "Astro Sienna · TypeScript",
+		badge: "Live",
+		desc: "The source code for this website, max-okeeffe.github.io, created using the Astro Sienna theme and hosted on GitHub pages."
+	},
 	/*{
 		name: "Sample Project",
 		href: "https://github.com/example/sample",
